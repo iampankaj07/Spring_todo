@@ -4,21 +4,22 @@ import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
 import com.learn.todoapp.entity.TodoEntity;
 import com.learn.todoapp.repository.TodoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class TodoService {
     private final TodoRepository todoRepository  ;
 
-    public TodoService(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
+
 
     public List<TodoResponse> getTodos(){
-        final List<TodoResponse> todos= List.of(new TodoResponse());
-        return todos ;
+         List<TodoEntity> todos= todoRepository.findAll();
+
+        return todos.stream().map(todoEntity -> new TodoResponse(todoEntity.getId(),todoEntity.getTitle(),todoEntity.getDescription(),todoEntity.isCompleted())).toList() ;
     }
 
     public  TodoResponse createTodo(TodoRequest request){
