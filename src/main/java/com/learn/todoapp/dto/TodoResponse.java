@@ -11,5 +11,5 @@ public class TodoResponse {
     private Long id;
     private String title;
     private String   description;
-    private boolean isCompleted;
+    private boolean completed;
 }

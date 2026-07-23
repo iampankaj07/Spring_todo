@@ -14,6 +14,6 @@ public class TodoService {
         return todos ;
     }
     public  TodoResponse createTodo(TodoRequest request){
-        return  new TodoResponse(1L,request.getTitle(),request.getDescription(),true);
+        return  new TodoResponse(1L,request.getTitle(),request.getDescription(),false);
     }
 }
