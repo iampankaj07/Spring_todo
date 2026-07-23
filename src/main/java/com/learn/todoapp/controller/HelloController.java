@@ -8,15 +8,16 @@ import java.util.Map;
 @RestController
 public class HelloController {
     @GetMapping("/greet")
-    public String greet(){
-        return  "Namaste ,Good Morning";
+    public String greet() {
+        return "Namaste ,Good Morning";
     }
+
     @GetMapping("/greetUser")
-    public Map<String,String> greetByUser(){
-        return  Map.of(
+    public Map<String, String> greetByUser() {
+        return Map.of(
                 "message", "Hi this is pankaj",
-                "author","Pankaj",
-                "status","Learning"
+                "author", "Pankaj",
+                "status", "Learning"
 
         );
     }

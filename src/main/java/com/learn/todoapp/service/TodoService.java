@@ -15,25 +15,24 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class TodoService {
-    private final TodoRepository todoRepository  ;
+    private final TodoRepository todoRepository;
 
-    public List<TodoResponse> getTodos(){
-        return todoRepository.findAll().stream().map(TodoMapper::toResponse).toList() ;
+    public List<TodoResponse> getTodos() {
+        return todoRepository.findAll().stream().map(TodoMapper::toResponse).toList();
     }
 
-    public  TodoResponse getTodoById(Long id){
-        Todo  todo = todoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Todo not found with id " +id));
-        return  TodoMapper.toResponse(todo);
+    public TodoResponse getTodoById(Long id) {
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Todo not found with id " + id));
+        return TodoMapper.toResponse(todo);
     }
 
-    public  TodoResponse createTodo(TodoRequest request){
-         Todo todo =new Todo();
+    public TodoResponse createTodo(TodoRequest request) {
+        Todo todo = new Todo();
 
-         todo.setTitle(request.getTitle());
-         todo.setDescription(request.getDescription());
-         todo.setCompleted(false);
+        todo.setTitle(request.getTitle());
+        todo.setDescription(request.getDescription());
+        todo.setCompleted(false);
 
-       return TodoMapper.toResponse(todoRepository.save(todo));
+        return TodoMapper.toResponse(todoRepository.save(todo));
     }
 }

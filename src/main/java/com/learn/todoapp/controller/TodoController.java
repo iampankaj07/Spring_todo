@@ -18,15 +18,17 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping("/todos")
-    public ResponseEntity<List<TodoResponse>> getTodos(){
-        return  ResponseEntity.status(HttpStatus.OK).body(todoService.getTodos());
+    public ResponseEntity<List<TodoResponse>> getTodos() {
+        return ResponseEntity.status(HttpStatus.OK).body(todoService.getTodos());
     }
+
     @PostMapping("/todos")
-    public ResponseEntity<TodoResponse> createTodo(@Valid @RequestBody TodoRequest request){
-        return  ResponseEntity.status(HttpStatus.CREATED).body(todoService.createTodo(request));
+    public ResponseEntity<TodoResponse> createTodo(@Valid @RequestBody TodoRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(todoService.createTodo(request));
     }
+
     @GetMapping("/todos/{id}")
-    public  ResponseEntity<TodoResponse> getTodoById(@PathVariable Long id){
-        return  ResponseEntity.status(HttpStatus.OK).body(todoService.getTodoById(id));
+    public ResponseEntity<TodoResponse> getTodoById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(todoService.getTodoById(id));
     }
 }
