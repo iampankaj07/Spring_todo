@@ -2,7 +2,6 @@ package com.learn.todoapp.controller;
 
 import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
-import com.learn.todoapp.entity.TodoEntity;
 import com.learn.todoapp.service.TodoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -2,7 +2,7 @@ package com.learn.todoapp.service;
 
 import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
-import com.learn.todoapp.entity.TodoEntity;
+import com.learn.todoapp.entity.Todo;
 import com.learn.todoapp.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,19 +17,19 @@ public class TodoService {
 
 
     public List<TodoResponse> getTodos(){
-         List<TodoEntity> todos= todoRepository.findAll();
+         List<Todo> todos= todoRepository.findAll();
 
-        return todos.stream().map(todoEntity -> new TodoResponse(todoEntity.getId(),todoEntity.getTitle(),todoEntity.getDescription(),todoEntity.isCompleted())).toList() ;
+        return todos.stream().map(todo -> new TodoResponse(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isCompleted())).toList() ;
     }
 
     public  TodoResponse createTodo(TodoRequest request){
-         TodoEntity todoEntity=new TodoEntity();
+         Todo todo =new Todo();
 
-         todoEntity.setTitle(request.getTitle());
-         todoEntity.setDescription(request.getDescription());
-         todoEntity.setCompleted(false);
+         todo.setTitle(request.getTitle());
+         todo.setDescription(request.getDescription());
+         todo.setCompleted(false);
 
-        TodoEntity savedEntity= todoRepository.save(todoEntity);
+        Todo savedEntity= todoRepository.save(todo);
 
         TodoResponse response = new  TodoResponse();
         response.setId(savedEntity.getId());
