@@ -23,7 +23,7 @@ public class TodoService {
 
     public  TodoResponse getTodoById(Long id){
         Todo  todo = todoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Todo not found eith id " +id));
+                .orElseThrow(() -> new ResourceNotFoundException("Todo not found with id " +id));
         return  TodoMapper.toResponse(todo);
     }
 
