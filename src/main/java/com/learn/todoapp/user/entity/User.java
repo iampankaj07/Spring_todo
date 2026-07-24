@@ -1,15 +1,18 @@
 package com.learn.todoapp.user.entity;
 
+import com.learn.todoapp.todo.entity.Todo;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,8 @@ public class User {
     private String name;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String email;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST)
+    private List<Todo> todos = new ArrayList<>();
 }

@@ -21,6 +21,6 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
 
-        return new UserResponse(savedUser.getId(), savedUser.getName(), savedUser.getEmail());
+        return UserResponse.from(savedUser);
     }
 }
