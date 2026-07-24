@@ -1,6 +1,7 @@
 package com.learn.todoapp.utils;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class PageResponse<T> {
     private List<T> data;
     private int page;

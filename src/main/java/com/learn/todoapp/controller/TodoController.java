@@ -23,8 +23,11 @@ public class TodoController {
     @GetMapping("/todos")
     public ResponseEntity<PageResponse<TodoResponse>> getTodos(
             @RequestParam (defaultValue = "0") int page,
-            @RequestParam (defaultValue = "10") int size) {
-        return ResponseEntity.ok().body(todoService.getTodos(page ,size));
+            @RequestParam (defaultValue = "10") int size,
+            @RequestParam (defaultValue= "id") String sortBy,
+            @RequestParam (defaultValue= "asc") String direction
+    ) {
+        return ResponseEntity.ok().body(todoService.getTodos(page ,size,sortBy,direction));
     }
 
     @PostMapping("/todos")

@@ -11,6 +11,7 @@ import com.learn.todoapp.utils.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,11 @@ import java.util.Optional;
 public class TodoService {
     private final TodoRepository todoRepository;
 
-    public PageResponse<TodoResponse> getTodos(int page, int size) {
-        Page<TodoResponse> pageTodos = todoRepository.findAll(PageRequest.of(page, size)).map(TodoMapper::toResponse);
+    public PageResponse<TodoResponse> getTodos(int page, int size, String sortBy, String direction) {
+        // this Manual
+        // Sort sort = direction.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Sort sort = Sort.by(Sort.Direction.fromString(direction),sortBy);
+        Page<TodoResponse> pageTodos = todoRepository.findAll(PageRequest.of(page, size, sort)).map(TodoMapper::toResponse);
         //create from constructor in page response dto;
         return PageResponse.from(pageTodos);
 
