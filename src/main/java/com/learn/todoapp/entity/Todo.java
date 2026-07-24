@@ -19,5 +19,5 @@ public class Todo {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private boolean completed;
+    private boolean completed = false;
 }

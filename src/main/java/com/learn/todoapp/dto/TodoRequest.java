@@ -12,4 +12,5 @@ public class TodoRequest {
     @NotBlank(message = "title is required")
     private String title;
     private String  description;
+    private Boolean  completed;
 }

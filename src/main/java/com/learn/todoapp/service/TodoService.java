@@ -35,4 +35,15 @@ public class TodoService {
 
         return TodoMapper.toResponse(todoRepository.save(todo));
     }
+
+    public TodoResponse updateTodo(Long id, TodoRequest request) {
+        Todo todo = todoRepository
+                .findById(id)
+                .orElseThrow();
+        todo.setTitle(request.getTitle());
+        todo.setDescription(request.getDescription());
+        todo.setCompleted(Boolean.TRUE.equals(request.getCompleted()));
+
+        return TodoMapper.toResponse(todoRepository.save(todo));
+    }
 }
