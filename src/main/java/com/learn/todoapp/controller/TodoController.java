@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,5 +36,11 @@ public class TodoController {
     @PutMapping("/todos/{id}")
     public ResponseEntity<TodoResponse> updateTodo(@PathVariable Long id,@Valid @RequestBody TodoRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.updateTodo(id,request));
+    }
+
+    @DeleteMapping("todos/{id}")
+    public  ResponseEntity<Map<String,String>> deleteTodo(@PathVariable Long id){
+        todoService.deleteTodo(id);
+        return  ResponseEntity.status(HttpStatus.OK).body(Map.of("message","Todo deleted successfully"));
     }
 }
