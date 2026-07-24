@@ -4,8 +4,10 @@ import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
 import com.learn.todoapp.entity.Todo;
 import com.learn.todoapp.service.TodoService;
+import com.learn.todoapp.utils.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,10 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping("/todos")
-    public ResponseEntity<List<TodoResponse>> getTodos() {
-        return ResponseEntity.status(HttpStatus.OK).body(todoService.getTodos());
+    public ResponseEntity<PageResponse<TodoResponse>> getTodos(
+            @RequestParam (defaultValue = "0") int page,
+            @RequestParam (defaultValue = "10") int size) {
+        return ResponseEntity.ok().body(todoService.getTodos(page ,size));
     }
 
     @PostMapping("/todos")
