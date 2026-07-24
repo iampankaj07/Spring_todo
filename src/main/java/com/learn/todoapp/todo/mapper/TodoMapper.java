@@ -1,7 +1,7 @@
-package com.learn.todoapp.mapper;
+package com.learn.todoapp.todo.mapper;
 
-import com.learn.todoapp.dto.TodoResponse;
-import com.learn.todoapp.entity.Todo;
+import com.learn.todoapp.todo.dto.TodoResponse;
+import com.learn.todoapp.todo.entity.Todo;
 
 public class TodoMapper {
     public static TodoResponse toResponse(Todo todo) {

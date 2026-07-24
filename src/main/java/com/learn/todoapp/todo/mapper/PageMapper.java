@@ -1,4 +1,4 @@
-package com.learn.todoapp.mapper;
+package com.learn.todoapp.todo.mapper;
 
 import com.learn.todoapp.utils.PageResponse;
 import org.springframework.data.domain.Page;

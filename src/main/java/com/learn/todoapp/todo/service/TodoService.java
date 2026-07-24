@@ -1,22 +1,18 @@
-package com.learn.todoapp.service;
+package com.learn.todoapp.todo.service;
 
-import com.learn.todoapp.dto.TodoRequest;
-import com.learn.todoapp.dto.TodoResponse;
-import com.learn.todoapp.dto.TodoUpdateRequest;
-import com.learn.todoapp.entity.Todo;
+import com.learn.todoapp.todo.dto.TodoRequest;
+import com.learn.todoapp.todo.dto.TodoResponse;
+import com.learn.todoapp.todo.dto.TodoUpdateRequest;
+import com.learn.todoapp.todo.entity.Todo;
 import com.learn.todoapp.exception.ResourceNotFoundException;
-import com.learn.todoapp.mapper.PageMapper;
-import com.learn.todoapp.mapper.TodoMapper;
-import com.learn.todoapp.repository.TodoRepository;
+import com.learn.todoapp.todo.mapper.TodoMapper;
+import com.learn.todoapp.todo.repository.TodoRepository;
 import com.learn.todoapp.utils.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

@@ -1,4 +1,4 @@
-package com.learn.todoapp.dto;
+package com.learn.todoapp.todo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package com.learn.todoapp.repository;
+package com.learn.todoapp.todo.repository;
 
-import com.learn.todoapp.entity.Todo;
+import com.learn.todoapp.todo.entity.Todo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

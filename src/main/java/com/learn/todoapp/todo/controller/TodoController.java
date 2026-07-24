@@ -1,19 +1,16 @@
-package com.learn.todoapp.controller;
+package com.learn.todoapp.todo.controller;
 
-import com.learn.todoapp.dto.TodoRequest;
-import com.learn.todoapp.dto.TodoResponse;
-import com.learn.todoapp.dto.TodoUpdateRequest;
-import com.learn.todoapp.entity.Todo;
-import com.learn.todoapp.service.TodoService;
+import com.learn.todoapp.todo.dto.TodoRequest;
+import com.learn.todoapp.todo.dto.TodoResponse;
+import com.learn.todoapp.todo.dto.TodoUpdateRequest;
+import com.learn.todoapp.todo.service.TodoService;
 import com.learn.todoapp.utils.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController

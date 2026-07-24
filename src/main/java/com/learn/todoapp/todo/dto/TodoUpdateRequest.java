@@ -1,4 +1,4 @@
-package com.learn.todoapp.dto;
+package com.learn.todoapp.todo.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TodoRequest {
-    @NotBlank(message = "title is required")
+public class TodoUpdateRequest {
     private String title;
     private String  description;
     private Boolean  completed;

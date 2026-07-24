@@ -1,23 +1,23 @@
-package com.learn.todoapp.entity;
+package com.learn.todoapp.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-@Table(name = "todos")
-public class Todo {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String title;
+    private String name;
     @Column(nullable = false)
-    private String description;
+    private String password;
     @Column(nullable = false)
-    private boolean completed = false;
+    private String email;
 }
