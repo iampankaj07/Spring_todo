@@ -2,6 +2,7 @@ package com.learn.todoapp.controller;
 
 import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
+import com.learn.todoapp.dto.TodoUpdateRequest;
 import com.learn.todoapp.entity.Todo;
 import com.learn.todoapp.service.TodoService;
 import com.learn.todoapp.utils.PageResponse;
@@ -25,9 +26,10 @@ public class TodoController {
             @RequestParam (defaultValue = "0") int page,
             @RequestParam (defaultValue = "10") int size,
             @RequestParam (defaultValue= "id") String sortBy,
-            @RequestParam (defaultValue= "asc") String direction
+            @RequestParam (defaultValue= "asc") String direction,
+            @RequestParam (required = false) Boolean completed
     ) {
-        return ResponseEntity.ok().body(todoService.getTodos(page ,size,sortBy,direction));
+        return ResponseEntity.ok().body(todoService.getTodos(page ,size,sortBy,direction,completed));
     }
 
     @PostMapping("/todos")
@@ -41,7 +43,7 @@ public class TodoController {
     }
 
     @PutMapping("/todos/{id}")
-    public ResponseEntity<TodoResponse> updateTodo(@PathVariable Long id,@Valid @RequestBody TodoRequest request) {
+    public ResponseEntity<TodoResponse> updateTodo(@PathVariable Long id,@Valid @RequestBody TodoUpdateRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.updateTodo(id,request));
     }
 

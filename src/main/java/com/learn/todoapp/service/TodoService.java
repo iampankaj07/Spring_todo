@@ -2,6 +2,7 @@ package com.learn.todoapp.service;
 
 import com.learn.todoapp.dto.TodoRequest;
 import com.learn.todoapp.dto.TodoResponse;
+import com.learn.todoapp.dto.TodoUpdateRequest;
 import com.learn.todoapp.entity.Todo;
 import com.learn.todoapp.exception.ResourceNotFoundException;
 import com.learn.todoapp.mapper.PageMapper;
@@ -22,13 +23,20 @@ import java.util.Optional;
 public class TodoService {
     private final TodoRepository todoRepository;
 
-    public PageResponse<TodoResponse> getTodos(int page, int size, String sortBy, String direction) {
+    public PageResponse<TodoResponse> getTodos(int page, int size, String sortBy, String direction, Boolean completed) {
         // this Manual
         // Sort sort = direction.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-        Sort sort = Sort.by(Sort.Direction.fromString(direction),sortBy);
-        Page<TodoResponse> pageTodos = todoRepository.findAll(PageRequest.of(page, size, sort)).map(TodoMapper::toResponse);
-        //create from constructor in page response dto;
-        return PageResponse.from(pageTodos);
+        Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
+        Page<Todo> pageTodos;
+        if (completed == null) {
+            pageTodos = todoRepository.findAll(PageRequest.of(page, size, sort));
+        } else {
+            pageTodos = todoRepository.findByCompleted(completed, PageRequest.of(page, size, sort));
+
+        }
+        Page<TodoResponse> pageTodoResponse = pageTodos.map(TodoMapper::toResponse);
+        //create from constructor in page response dto;s
+        return PageResponse.from(pageTodoResponse);
 
         //con create mapper and map response
         // List<TodoResponse> todos = pageTodos.getContent().stream().toList();
@@ -50,13 +58,19 @@ public class TodoService {
         return TodoMapper.toResponse(todoRepository.save(todo));
     }
 
-    public TodoResponse updateTodo(Long id, TodoRequest request) {
+    public TodoResponse updateTodo(Long id, TodoUpdateRequest request) {
         Todo todo = todoRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Todo not found with id " + id));
-        todo.setTitle(request.getTitle());
-        todo.setDescription(request.getDescription());
-        todo.setCompleted(Boolean.TRUE.equals(request.getCompleted()));
+        if (request.getTitle() != null) {
+            todo.setTitle(request.getTitle());
+        }
+        if (request.getDescription() != null) {
+            todo.setDescription(request.getDescription());
+        }
+        if (request.getCompleted() != null) {
+            todo.setCompleted(request.getCompleted());
+        }
 
         return TodoMapper.toResponse(todoRepository.save(todo));
     }
